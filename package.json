@@ -1,0 +1,62 @@
+{
+  "name": "@remin/complexity",
+  "version": "0.0.0",
+  "description": "A VRM model viewer powered by NW.js.",
+  "license": "MIT",
+  "author": "remin",
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rdrgn/complexity.js.git"
+  },
+  "scripts": {
+    "build": "rm -rf dist && webpack && tsc --emitDeclarationOnly",
+    "test": "jest",
+    "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore .",
+    "fix": "eslint --fix --ext .ts,.tsx --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "antlr4": "^4.7.2"
+  },
+  "devDependencies": {
+    "@types/antlr4": "^4.7.0",
+    "@types/jest": "^24.0.18",
+    "@typescript-eslint/eslint-plugin": "^2.1.0",
+    "@typescript-eslint/parser": "^2.1.0",
+    "antlr4-webpack-loader": "^0.1.1",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-loader": "^3.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.0.1",
+    "husky": "^3.0.2",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.2.1",
+    "prettier": "^1.16.4",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js?(x),ts?(x)}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{?(s)css,htm?(l),json,md,y?(a)ml}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
