@@ -1,17 +1,17 @@
-import { CommonTokenStream, InputStream } from 'antlr4/index';
+import { CommonTokenStream, InputStream } from 'antlr4';
 import languages from './languages';
 
 const extentionRegExp = /\.[^.]+$/;
 
 export function analyze(filename: string, code: string) {
   const [extention] = filename.match(extentionRegExp);
-  if (extention === undefined) {
+  if (!extention) {
     //
     return;
   }
 
-  const language = languages.find(l => l.extensions.findIndex(e => e === extention));
-  if (language === undefined) {
+  const language = languages.find(l => l.test.test(extention));
+  if (!language) {
     //
     return;
   }
@@ -19,7 +19,18 @@ export function analyze(filename: string, code: string) {
   const lexar = new language.lexar(new InputStream(code));
   const parser = new language.parser(new CommonTokenStream(lexar));
   parser.buildParseTrees = true;
-  const tree = parser.translationunit();
+  if (!parser[language.rules.root]) {
+    //
+    return;
+  }
+  const tree = parser[language.rules.root]();
 
-  console.log(tree);
+  const walk = (ctx: any): any =>
+    ctx && {
+      rule: parser.ruleNames[ctx.ruleIndex],
+      token: !ctx.children ? ctx.getText() : undefined,
+      children: ctx.children ? ctx.children.map(child => walk(child)) : undefined,
+    };
+
+  console.log(JSON.stringify(walk(tree), undefined, 2));
 }
