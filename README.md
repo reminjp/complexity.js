@@ -1,4 +1,4 @@
-# complexity
+# complexity.js
 
 [![License][license-badge]][license-badge-url]
 
@@ -7,7 +7,7 @@ A static code analyzer written in JavaScript.
 ## Usage
 
 ```bash
-yarn add @remin/complexity
+yarn add complexityjs
 ```
 
 ## Development

@@ -1,5 +1,5 @@
 {
-  "name": "@remin/complexity",
+  "name": "complexityjs",
   "version": "0.0.0",
   "description": "A VRM model viewer powered by NW.js.",
   "license": "MIT",
