@@ -12,8 +12,9 @@ yarn add complexityjs
 
 ## Development
 
-- `yarn`
-- `java` (for ANTLR4)
+- Node.js
+- Yarn
+- Java Runtime Environment (for ANTLR4)
 
 ```bash
 # install dependencies

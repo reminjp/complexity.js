@@ -15,7 +15,7 @@
     "url": "https://github.com/rdrgn/complexity.js.git"
   },
   "scripts": {
-    "build": "rm -rf dist && webpack && tsc --emitDeclarationOnly",
+    "build": "rm -rf dist && webpack",
     "test": "jest",
     "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore .",
     "fix": "eslint --fix --ext .ts,.tsx --ignore-path .gitignore ."

@@ -6,8 +6,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
-    library: 'complexity',
+    library: 'complexityjs',
     libraryTarget: 'umd',
+    globalObject: 'this',
   },
   module: {
     rules: [
