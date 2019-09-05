@@ -3,15 +3,17 @@ import { CPP14Lexer, CPP14Parser } from './grammars/CPP14';
 
 export default [
   {
+    test: /\.c$/,
     name: 'c',
     lexar: CLexer,
     parser: CParser,
-    extensions: ['.c'],
+    rules: { root: 'primaryExpression' },
   },
   {
+    test: /\.cpp$/,
     name: 'cpp',
     lexar: CPP14Lexer,
     parser: CPP14Parser,
-    extensions: ['.cpp'],
+    rules: { root: 'translationunit' },
   },
 ];
