@@ -28,11 +28,11 @@ analyze('test.cpp', 'int main() {}');
 # install dependencies
 $ yarn install
 
+# test
+$ yarn run test
+
 # build for production
 $ yarn run build
-
-# test the built package
-$ yarn run test
 ```
 
 [npm-badge]: https://img.shields.io/npm/v/complexityjs.svg

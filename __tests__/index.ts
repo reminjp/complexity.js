@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { analyze } from '../dist';
+import { analyze } from '../src';
 
 const testCasePath = path.resolve(__dirname, 'cases');
 const inputFileNameRegExp = /^input\.[^.]+$/;
