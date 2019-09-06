@@ -2,8 +2,10 @@
 *.log
 # dependencies
 node_modules/
-# output
+# webpack output
 dist/
+# jest output
+coverage/
 # ANTLR grammars
 /src/grammars/*
 !/src/grammars/*.g4
