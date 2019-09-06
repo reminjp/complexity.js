@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const antlrCommand = 'antlr';
-const grammarPath = path.resolve(__dirname, 'res', 'grammars');
+const grammarPath = path.resolve(__dirname, 'src', 'grammars');
 const grammarFileExtentionRegExp = /\.g4$/;
 const javaScriptFileExtentionRegExp = /\.js$/;
 
