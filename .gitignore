@@ -4,5 +4,8 @@
 node_modules/
 # output
 dist/
+# ANTLR grammars
+/res/grammars/*
+!/res/grammars/*.g4
 # ANTLR temporary files
 .antlr
