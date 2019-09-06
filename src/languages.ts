@@ -1,5 +1,4 @@
-import { CLexer, CParser } from './grammars/C';
-import { CPP14Lexer, CPP14Parser } from './grammars/CPP14';
+import { CLexer, CParser, CPP14Lexer, CPP14Parser } from '../res/grammars';
 
 const languages: LanguageConfig[] = [
   {

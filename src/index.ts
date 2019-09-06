@@ -1,4 +1,4 @@
-import { CommonTokenStream, InputStream } from 'antlr4';
+import { CommonTokenStream, InputStream } from 'antlr4/index';
 import languages from './languages';
 
 const extentionRegExp = /\.[^.]+$/;

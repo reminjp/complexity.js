@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "rm -rf dist && webpack",
+    "build-grammars": "node antlr4.js",
     "test": "jest",
     "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore .",
     "fix": "eslint --fix --ext .ts,.tsx --ignore-path .gitignore ."
