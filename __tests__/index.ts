@@ -27,7 +27,7 @@ describe('analyze', () => {
     const output = fs.readFileSync(path.resolve(testCasePath, dir.name, outputFile.name), { encoding: 'utf-8' });
     const outputObject = JSON.parse(output);
 
-    test(`case '${dir.name}'`, async done => {
+    test(`${dir.name}/${inputFile.name}`, async done => {
       expect(await analyze(inputFile.name, input)).toEqual(outputObject);
       done();
     });
