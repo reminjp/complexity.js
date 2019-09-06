@@ -22,14 +22,10 @@ module.exports = {
         exclude: /node_modules/,
         use: 'ts-loader',
       },
-      {
-        test: /\.g4$/,
-        use: 'antlr4-webpack-loader',
-      },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.g4'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: ['node_modules'],
   },
   // for ANTLR4

@@ -29,7 +29,6 @@
     "@types/jest": "^24.0.18",
     "@typescript-eslint/eslint-plugin": "^2.1.0",
     "@typescript-eslint/parser": "^2.1.0",
-    "antlr4-webpack-loader": "^0.1.1",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-loader": "^3.0.0",
