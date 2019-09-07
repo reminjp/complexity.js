@@ -27,13 +27,13 @@ analyze('test.cpp', 'int main() {}');
 - Java Runtime Environment (for ANTLR4)
 
 ```bash
-# install dependencies
-$ yarn install
+# install the dependencies and prepare the development environment
+$ yarn run bootstrap
 
 # test
 $ yarn run test
 
-# build for production
+# bundle for production
 $ yarn run build
 ```
 
