@@ -1,3 +1,4 @@
+import { Lexer, Parser, CharStream, TokenStream } from 'antlr4ts';
 import { CLexer, CParser, CPP14Lexer, CPP14Parser } from './grammars';
 
 const languages: LanguageConfig[] = [
@@ -42,8 +43,8 @@ const languages: LanguageConfig[] = [
 export interface LanguageConfig {
   test: RegExp;
   name: string;
-  lexar: any;
-  parser: any;
+  lexar: new (input: CharStream) => Lexer;
+  parser: new (input: TokenStream) => Parser;
   selectors: {
     root: [Selector];
     functionDefinition: Selector[];
