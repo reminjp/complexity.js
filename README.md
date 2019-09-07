@@ -1,8 +1,10 @@
-# complexity.js
+# [WIP] complexity.js
 
+<!--
 [![Latest NPM release][npm-badge]][npm-badge-url]
 [![Install Size][npm-size-badge]][npm-size-badge-url]
 [![License][license-badge]][license-badge-url]
+-->
 
 A static code analyzer written in JavaScript.
 
