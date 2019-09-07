@@ -6,17 +6,11 @@ const languages: LanguageConfig[] = [
     name: 'c',
     lexar: CLexer,
     parser: CParser,
-    rules: {
-      root: [{ rule: 'compilationUnit' }],
-      functionDefinition: [{ rule: 'functionDefinition' }],
-      ccnIncrement: [
-        { token: 'if' },
-        { token: 'while' },
-        { token: 'case' },
-        { token: '&&' },
-        { token: '||' },
-        { token: '?' },
-      ],
+    selectors: {
+      root: [['compilationUnit']],
+      functionDefinition: [['functionDefinition']],
+      functionName: [['functionDefinition', 'declarator', 'directDeclarator', 'directDeclarator', undefined]],
+      ccnIncrement: [["'if'"], ["'while'"], ["'case'"], ["'&&'"], ["'||'"], ["'?'"]],
     },
   },
   {
@@ -24,38 +18,40 @@ const languages: LanguageConfig[] = [
     name: 'cpp',
     lexar: CPP14Lexer,
     parser: CPP14Parser,
-    rules: {
-      root: [{ rule: 'translationunit' }],
-      functionDefinition: [{ rule: 'functiondefinition' }],
-      ccnIncrement: [
-        { token: 'if' },
-        { token: 'while' },
-        { token: 'case' },
-        { token: '&&' },
-        { token: 'and' },
-        { token: '||' },
-        { token: 'or' },
-        { token: '?' },
+    selectors: {
+      root: [['translationunit']],
+      functionDefinition: [['functiondefinition']],
+      functionName: [
+        [
+          'functiondefinition',
+          'declarator',
+          'ptrdeclarator',
+          'noptrdeclarator',
+          'noptrdeclarator',
+          'declaratorid',
+          'idexpression',
+          'unqualifiedid',
+          undefined,
+        ],
       ],
+      ccnIncrement: [["'if'"], ["'while'"], ["'case'"], ["'&&'"], ["'and'"], ["'||'"], ["'or'"], ["'?'"]],
     },
   },
 ];
 
-interface LanguageConfig {
+export interface LanguageConfig {
   test: RegExp;
   name: string;
   lexar: any;
   parser: any;
-  rules: {
-    root: Rule[];
-    functionDefinition: Rule[];
-    ccnIncrement: Rule[];
+  selectors: {
+    root: [Selector];
+    functionDefinition: Selector[];
+    functionName: Selector[];
+    ccnIncrement: Selector[];
   };
 }
 
-interface Rule {
-  rule?: string;
-  token?: string;
-}
+export type Selector = string[];
 
 export default languages;
