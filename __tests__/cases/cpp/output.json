@@ -1,4 +1,4 @@
 {
   "files": [{ "name": "input.cpp", "ccn": 3 }],
-  "functions": [{ "ccn": 1 }, { "ccn": 3 }]
+  "functions": [{ "name": "main", "ccn": 1 }, { "name": "function", "ccn": 3 }]
 }
