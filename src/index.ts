@@ -1,12 +1,10 @@
-import languages from './languages';
-import { Parser } from './Parser';
-import { Result, Analyzer } from './Analyzer';
-
-export { Result, ResultUnit } from './Analyzer';
+import { ANTLRInputStream, CommonTokenStream, ParserRuleContext } from 'antlr4ts';
+import languages, { Selector } from './Language';
+import { Visitor } from './Visitor';
 
 const extentionRegExp = /\.[^.]+$/;
 
-export async function analyze(filename: string, code: string): Promise<Result> {
+export async function analyze(filename: string, code: string): Promise<any> {
   const [extention] = filename.match(extentionRegExp);
   if (!extention) {
     throw 'failed to detect a file extention';
@@ -17,8 +15,22 @@ export async function analyze(filename: string, code: string): Promise<Result> {
     throw `unsupported language '${extention}'`;
   }
 
-  const tree = new Parser(language).parse(code);
-  const result = new Analyzer(language).analyze(tree);
+  const lexar = new language.lexar(new ANTLRInputStream(code));
+  const parser = new language.parser(new CommonTokenStream(lexar));
+
+  Selector.addLanguage(language.name, parser.ruleNames);
+  if (language.cachedSelectors === undefined) {
+    language.cachedSelectors = {
+      functionDefinition: language.selectors.functionDefinition.map(s => new Selector(language.name, s)),
+      functionName: language.selectors.functionName.map(s => new Selector(language.name, s)),
+      ccnIncrement: language.selectors.ccnIncrement.map(s => new Selector(language.name, s)),
+    };
+  }
+
+  const context: ParserRuleContext = parser[language.root]();
+  const visitor = new Visitor(language, parser);
+  visitor.visit(context);
+  const result = visitor.getResult();
   result.files[0].name = filename;
   return result;
 }
