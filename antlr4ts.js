@@ -14,7 +14,9 @@ const grammarFiles = fs
   .filter(f => f.isFile() && grammarFileExtentionRegExp.test(f.name));
 
 grammarFiles.forEach(file => {
-  child_process.execSync(`${antlrCommand} -o ${destiinationPath} ${path.resolve(sourcePath, file.name)}`);
+  child_process.execSync(
+    `${antlrCommand} -o ${destiinationPath} -visitor -no-listener ${path.resolve(sourcePath, file.name)}`
+  );
 });
 
 // create index.ts
