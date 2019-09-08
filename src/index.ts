@@ -1,5 +1,6 @@
 import { ANTLRInputStream, CommonTokenStream, ParserRuleContext } from 'antlr4ts';
-import languages, { Selector } from './Language';
+import { languages } from './Language';
+import { Selector } from './Selector';
 import { Visitor } from './Visitor';
 
 const extentionRegExp = /\.[^.]+$/;
