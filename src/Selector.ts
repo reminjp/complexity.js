@@ -25,8 +25,8 @@ export class Selector {
 
     this.elements = tokens
       .map(token => {
-        if (token === '*') {
-          return undefined;
+        if (token === '*' || token === '>') {
+          return token;
         } else if (/'.+'/.test(token)) {
           return token.substring(1, token.length - 1);
         } else {
@@ -43,7 +43,7 @@ export class Selector {
   public match(node: RuleNode | TerminalNode): boolean {
     if (
       !(
-        this.elements[0] === undefined ||
+        this.elements[0] === '*' ||
         (node instanceof RuleNode && node.ruleContext.ruleIndex === this.elements[0]) ||
         (node instanceof TerminalNode && node.text === this.elements[0])
       )
@@ -52,15 +52,25 @@ export class Selector {
     }
 
     let elementIndex = 1;
-    for (let n = node; n !== undefined && elementIndex < this.elements.length; n = n.parent) {
+    for (let n = node.parent; n !== undefined && elementIndex < this.elements.length; n = n.parent) {
+      const shouldDirectChild = this.elements[elementIndex] === '>';
+      if (shouldDirectChild) {
+        elementIndex++;
+        if (elementIndex >= this.elements.length) {
+          break;
+        }
+      }
+
       if (
-        this.elements[elementIndex] === undefined ||
+        this.elements[elementIndex] === '*' ||
         (n instanceof RuleNode && n.ruleContext.ruleIndex === this.elements[elementIndex]) ||
         (n instanceof TerminalNode && n.text === this.elements[elementIndex])
       ) {
         elementIndex++;
+      } else if (shouldDirectChild) {
+        break;
       }
     }
-    return elementIndex === this.elements.length;
+    return elementIndex >= this.elements.length;
   }
 }

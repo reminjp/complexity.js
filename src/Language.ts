@@ -11,7 +11,7 @@ export const languages: Language[] = [
     root: 'compilationUnit',
     selectors: {
       functionDefinition: ['functionDefinition'],
-      functionName: ['functionDefinition declarator directDeclarator directDeclarator *'],
+      functionName: ['functionDefinition > declarator > directDeclarator > directDeclarator > *'],
       ccnIncrement: ["'if'", "'while'", "'case'", "'&&'", "'||'", "'?'"],
     },
   },
@@ -23,9 +23,7 @@ export const languages: Language[] = [
     root: 'translationunit',
     selectors: {
       functionDefinition: ['functiondefinition'],
-      functionName: [
-        'functiondefinition declarator ptrdeclarator noptrdeclarator noptrdeclarator declaratorid idexpression unqualifiedid *',
-      ],
+      functionName: ['functiondefinition > declarator unqualifiedid > *'],
       ccnIncrement: ["'if'", "'while'", "'case'", "'&&'", "'and'", "'||'", "'or'", "'?'"],
     },
   },
