@@ -2,6 +2,7 @@ import { ANTLRInputStream, CommonTokenStream, ParserRuleContext } from 'antlr4ts
 import { languages } from './Language';
 import { Selector } from './Selector';
 import { Visitor } from './Visitor';
+// import { DebugVisitor } from './DebugVisitor';
 
 const extentionRegExp = /\.[^.]+$/;
 
@@ -33,5 +34,10 @@ export async function analyze(filename: string, code: string): Promise<any> {
   visitor.visit(context);
   const result = visitor.getResult();
   result.files[0].name = filename;
+
+  // const debugVisitor = new DebugVisitor(parser);
+  // debugVisitor.visit(context);
+  // console.log(debugVisitor.getResult());
+
   return result;
 }
