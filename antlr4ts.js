@@ -15,7 +15,7 @@ const grammarFiles = fs
 
 grammarFiles.forEach(file => {
   child_process.execSync(
-    `${antlrCommand} -o ${destiinationPath} -visitor -no-listener ${path.resolve(sourcePath, file.name)}`
+    `${antlrCommand} -o ${destiinationPath} -no-visitor -no-listener ${path.resolve(sourcePath, file.name)}`
   );
 });
 
