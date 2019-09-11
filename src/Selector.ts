@@ -44,8 +44,8 @@ export class Selector {
     if (
       !(
         this.elements[0] === '*' ||
-        (node instanceof RuleNode && node.ruleContext.ruleIndex === this.elements[0]) ||
-        (node instanceof TerminalNode && node.text === this.elements[0])
+        ((node as any).ruleContext && (node as any).ruleContext.ruleIndex === this.elements[0]) ||
+        node.text === this.elements[0]
       )
     ) {
       return false;
@@ -63,8 +63,8 @@ export class Selector {
 
       if (
         this.elements[elementIndex] === '*' ||
-        (n instanceof RuleNode && n.ruleContext.ruleIndex === this.elements[elementIndex]) ||
-        (n instanceof TerminalNode && n.text === this.elements[elementIndex])
+        n.ruleContext.ruleIndex === this.elements[elementIndex] ||
+        n.text === this.elements[elementIndex]
       ) {
         elementIndex++;
       } else if (shouldDirectChild) {
