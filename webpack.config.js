@@ -14,8 +14,12 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
+        exclude: /(node_modules|grammars)/,
         enforce: 'pre',
-        use: 'eslint-loader',
+        loader: 'eslint-loader',
+        options: {
+          failOnError: true,
+        },
       },
       {
         test: /\.tsx?$/,
