@@ -20,7 +20,7 @@
     "test": "jest",
     "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore .",
     "fix": "eslint --fix --ext .ts,.tsx --ignore-path .gitignore .",
-    "antlr4ts": "node antlr4ts.js"
+    "antlr4ts": "rm -rf src/grammars && node antlr4ts.js"
   },
   "dependencies": {
     "antlr4": "^4.7.2",
