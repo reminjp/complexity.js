@@ -22,15 +22,14 @@
     "fix": "eslint --fix --ext .ts,.tsx --ignore-path .gitignore .",
     "antlr4ts": "rm -rf src/grammars && node antlr4ts.js"
   },
-  "dependencies": {
-    "antlr4": "^4.7.2",
-    "antlr4ts": "^0.5.0-alpha.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/antlr4": "^4.7.0",
     "@types/jest": "^24.0.18",
     "@typescript-eslint/eslint-plugin": "^2.1.0",
     "@typescript-eslint/parser": "^2.1.0",
+    "antlr4": "^4.7.2",
+    "antlr4ts": "^0.5.0-alpha.3",
     "antlr4ts-cli": "^0.5.0-alpha.3",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.0.0",
