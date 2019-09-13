@@ -1,15 +1,17 @@
+#include <functional>
 #include <iostream>
 
-int main() { std::cout << "Hello, World!" << std::endl; }
+auto lambda = [](int x) { return x + 1; };
 
-void function(bool condition1, bool condition2) {
-  if (condition1 || condition2) {
-    std::cout << "Hello, World!" << std::endl;
-  }
+int main() {
+  fizzbuzz(100);
+
+  std::function<int(int, int)> gcd = [&gcd](int a, int b) { return b ? gcd(b, a % b) : a; };
+  std::cout << gcd(6, 8) << std::endl;
 }
 
 void fizzbuzz(int n) {
-  for (int i = 1; i < n; i++) {
+  for (int i = 1; i <= n; i++) {
     if (i % 3 == 0 && i % 5 == 0) {
       std::cout << "FizzBuzz" << std::endl;
     } else if (i % 3 == 0) {

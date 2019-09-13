@@ -1,12 +1,20 @@
 #include <stdio.h>
 
-int main(int argc, char *args[]) {
-  printf("hello, world\n");
+int main(void) {
+  fizzbuzz(100);
   return 0;
 }
 
-void function(int condition1, int condition2) {
-  if (condition1 || condition2) {
-    printf("hello, world\n");
+void fizzbuzz(int n) {
+  for (int i = 1; i <= n; i++) {
+    if (i % 3 == 0 && i % 5 == 0) {
+      printf("FizzBuzz\n");
+    } else if (i % 3 == 0) {
+      printf("Fizz\n");
+    } else if (i % 5 == 0) {
+      printf("Buzz\n");
+    } else {
+      printf("%d\n", n);
+    }
   }
 }
