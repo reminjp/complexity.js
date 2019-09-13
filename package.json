@@ -1,7 +1,7 @@
 {
   "name": "complexityjs",
   "version": "0.0.0",
-  "description": "A VRM model viewer powered by NW.js.",
+  "description": "A static code analyzer written in JavaScript.",
   "license": "MIT",
   "author": "remin",
   "files": [
