@@ -5,6 +5,7 @@ import { Visitor } from './Visitor';
 // import { DebugVisitor } from './DebugVisitor';
 
 const extentionRegExp = /\.[^.]+$/;
+const newlineRegExp = /\r\n|\r|\n/;
 
 export async function analyze(filename: string, code: string): Promise<any> {
   const [extention] = filename.match(extentionRegExp);
@@ -34,6 +35,7 @@ export async function analyze(filename: string, code: string): Promise<any> {
   visitor.visit(context);
   const result = visitor.getResult();
   result.name = filename;
+  result.loc = code.split(newlineRegExp).length;
 
   // const debugVisitor = new DebugVisitor(parser);
   // debugVisitor.visit(context);
