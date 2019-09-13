@@ -22,7 +22,7 @@ export const languages: Language[] = [
     parser: CPP14Parser,
     root: 'translationunit',
     selectors: {
-      functionDefinition: ['functiondefinition'],
+      functionDefinition: ['functiondefinition', 'lambdaexpression'],
       functionName: ['functiondefinition > declarator unqualifiedid > *'],
       ccnIncrement: ["'if'", "'while'", "'case'", "'&&'", "'and'", "'||'", "'or'", "'?'"],
     },
@@ -40,6 +40,7 @@ export interface Language {
     functionName: string[];
     ccnIncrement: string[];
   };
+  // TODO: refactor
   cachedSelectors?: {
     functionDefinition: Selector[];
     functionName: Selector[];

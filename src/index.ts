@@ -33,7 +33,7 @@ export async function analyze(filename: string, code: string): Promise<any> {
   const visitor = new Visitor(language, parser);
   visitor.visit(context);
   const result = visitor.getResult();
-  result.files[0].name = filename;
+  result.name = filename;
 
   // const debugVisitor = new DebugVisitor(parser);
   // debugVisitor.visit(context);
