@@ -1,5 +1,5 @@
 import { ParseTreeVisitor, ParseTree, RuleNode, TerminalNode } from 'antlr4ts/tree';
-import { Parser } from 'antlr4ts';
+import { Parser, ParserRuleContext } from 'antlr4ts';
 import { Language } from './Language';
 
 export class Visitor implements ParseTreeVisitor<void> {
@@ -28,6 +28,7 @@ export class Visitor implements ParseTreeVisitor<void> {
 
     this.result = {
       name: '',
+      loc: 0,
       cc: 1,
       functions: [],
     };
@@ -35,15 +36,18 @@ export class Visitor implements ParseTreeVisitor<void> {
     tree.accept(this);
   }
 
-  visitChildren(node: RuleNode): void {
+  // The node is typed as RuleNode but it is ParserRuleContext in fact.
+  visitChildren(node: RuleNode | ParserRuleContext): void {
     const isFunctionDefinition =
       this.language.cachedSelectors &&
       this.language.cachedSelectors.functionDefinition.find(s => s.match(node)) !== undefined;
 
     if (isFunctionDefinition) {
       this.functionStack.push(this.result.functions.length);
+
       this.result.functions.push({
         name: '',
+        loc: 'start' in node && 'stop' in node ? node.stop.line + 1 - node.start.line : 0,
         cc: 1,
       });
     }
@@ -83,6 +87,7 @@ export class Visitor implements ParseTreeVisitor<void> {
 
 export interface FileResult {
   name: string;
+  loc: number;
   cc: number;
   functions: FunctionResult[];
   // errors?: string[];
@@ -90,5 +95,6 @@ export interface FileResult {
 
 export interface FunctionResult {
   name: string;
+  loc: number;
   cc: number;
 }
