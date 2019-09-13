@@ -8,7 +8,7 @@ export class Visitor implements ParseTreeVisitor<void> {
 
   private functionStack: number[];
 
-  private result: Result;
+  private result: FileResult;
 
   constructor(language: Language, parser: Parser) {
     this.language = language;
@@ -26,7 +26,11 @@ export class Visitor implements ParseTreeVisitor<void> {
   visit(tree: ParseTree): void {
     this.functionStack = [];
 
-    this.result = { files: [{ ccn: 1 }], functions: [] };
+    this.result = {
+      name: '',
+      cc: 1,
+      functions: [],
+    };
 
     tree.accept(this);
   }
@@ -40,7 +44,7 @@ export class Visitor implements ParseTreeVisitor<void> {
       this.functionStack.push(this.result.functions.length);
       this.result.functions.push({
         name: '',
-        ccn: 1,
+        cc: 1,
       });
     }
 
@@ -59,8 +63,11 @@ export class Visitor implements ParseTreeVisitor<void> {
         this.result.functions[this.functionStack[this.functionStack.length - 1]].name = node.text;
       }
       if (this.language.cachedSelectors.ccnIncrement.find(s => s.match(node)) !== undefined) {
-        this.result.files[0].ccn++;
-        this.functionStack.forEach(i => this.result.functions[i].ccn++);
+        if (this.functionStack.length > 0) {
+          this.result.functions[this.functionStack[this.functionStack.length - 1]].cc++;
+        } else {
+          this.result.cc++;
+        }
       }
     }
   }
@@ -74,13 +81,14 @@ export class Visitor implements ParseTreeVisitor<void> {
   // }
 }
 
-export interface Result {
-  files: UnitResult[];
-  functions: UnitResult[];
+export interface FileResult {
+  name: string;
+  cc: number;
+  functions: FunctionResult[];
   // errors?: string[];
 }
 
-export interface UnitResult {
-  name?: string;
-  ccn: number;
+export interface FunctionResult {
+  name: string;
+  cc: number;
 }
