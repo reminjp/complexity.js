@@ -1,5 +1,6 @@
 {
   "name": "input.c",
+  "loc": 21,
   "cc": 1,
-  "functions": [{ "name": "main", "cc": 1 }, { "name": "fizzbuzz", "cc": 5 }]
+  "functions": [{ "name": "main", "loc": 4, "cc": 1 }, { "name": "fizzbuzz", "loc": 13, "cc": 5 }]
 }
